@@ -13,14 +13,14 @@ const TESTIMONIALS = [
       "Avant, je découvrais les notes de mon fils des semaines plus tard. Avec Claristudent, je les vois le jour même. Les alertes en temps réel me donnent une vraie tranquillité d'esprit.",
     name: 'Amara N.',
     role: "Parent d'un élève de 5ème",
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200',
+    avatar: 'https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&q=80&w=200',
   },
   {
     quote:
       "En tant que mère qui travaille, je ne peux pas toujours être à l'école. Claristudent me permet d'écrire directement à son enseignant et de savoir qu'il est en classe chaque jour. Ça a tout changé pour nous.",
     name: 'Grace M.',
     role: "Parent d'un élève de CM1",
-    avatar: '/IMAGE10.jpeg', // Utilise ton image de la maman
+    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200',
   },
   {
     quote:

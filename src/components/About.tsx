@@ -61,23 +61,26 @@ export default function About() {
         <div className="container-px">
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div ref={imgRef} className={`reveal ${imgVisible ? 'is-visible' : ''} relative`}>
+              {/* Image principale plus grande et plus imposante */}
               <div className="overflow-hidden rounded-3xl shadow-card ring-1 ring-slate-200/60">
                 <img
                   src={ABOUT_IMG}
-                  alt="Un enseignant interagit avec des élèves dans une salle de classe"
-                  className="h-[360px] w-full object-cover sm:h-[440px]"
+                  alt="Un enseignant interagit avec des élèves dans une salle de classe lumineuse"
+                  className="h-[420px] w-full object-cover sm:h-[520px]"
                   loading="lazy"
                 />
               </div>
-              <div className="absolute -bottom-8 -right-4 hidden w-44 overflow-hidden rounded-2xl border-4 border-white shadow-card sm:block lg:-right-8 lg:w-52">
+
+              {/* Incrustation plus large et mieux positionnée */}
+              <div className="absolute -bottom-6 -right-2 hidden w-52 overflow-hidden rounded-2xl border-4 border-white shadow-card sm:block lg:-bottom-8 lg:-right-6 lg:w-64">
                 <img
                   src={ABOUT_IMG_2}
-                  alt="Une élève studieuse en classe"
-                  className="h-32 w-full object-cover lg:h-40"
+                  alt="Une élève souriante dans une salle de classe lumineuse"
+                  className="h-40 w-full object-cover lg:h-48"
                   loading="lazy"
                 />
               </div>
-              <div className="absolute -left-4 -top-4 h-16 w-16 rounded-2xl bg-gold-400/20 blur-2xl" aria-hidden="true" />
+              <div className="absolute -left-4 -top-4 h-20 w-20 rounded-2xl bg-gold-400/20 blur-2xl" aria-hidden="true" />
             </div>
 
             <div>
