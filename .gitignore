@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1E56E2" />
+    <meta
+      name="description"
+      content="Claristudent — suivez la scolarité de votre enfant en temps réel. Notes, présence et communication parent-enseignant dans une application sécurisée et facile à utiliser."
+    />
+    <meta name="keywords" content="Claristudent, application parent, suivi scolaire, notes, présence, communication parent-enseignant, application éducation" />
+    <meta name="author" content="Claristudent" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Claristudent — Tout ce qui compte pour l'éducation de votre enfant, au même endroit." />
+    <meta
+      property="og:description"
+      content="Suivez la scolarité de votre enfant en temps réel et restez tranquille, où que vous soyez."
+    />
+    <meta property="og:image" content="https://images.pexels.com/photos/8617941/pexels-photo-8617941.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Claristudent — L'éducation de votre enfant, au même endroit." />
+    <meta
+      name="twitter:description"
+      content="Suivez la scolarité de votre enfant en temps réel et restez tranquille, où que vous soyez."
+    />
+    <meta name="twitter:image" content="https://images.pexels.com/photos/8617941/pexels-photo-8617941.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Claristudent — L'éducation de votre enfant, au même endroit</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
