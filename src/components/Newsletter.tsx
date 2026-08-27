@@ -5,8 +5,7 @@ import { supabase } from '@/lib/supabase';
 
 type Status = 'idle' | 'loading' | 'success' | 'error';
 
-const NEWSLETTER_IMG =
-  'https://images.pexels.com/photos/5212683/pexels-photo-5212683.jpeg?auto=compress&cs=tinysrgb&w=800';
+const NEWSLETTER_IMG = '/IMAGE10.jpeg';
 
 export default function Newsletter() {
   const { ref, visible } = useReveal();
@@ -130,7 +129,7 @@ export default function Newsletter() {
             <div className="relative hidden h-full min-h-[320px] lg:block">
               <img
                 src={NEWSLETTER_IMG}
-                alt="Une élève joyeuse qui écrit dans une salle de classe"
+                alt="Une élève accompagnée de sa maman"
                 className="absolute inset-0 h-full w-full object-cover"
                 loading="lazy"
               />

@@ -13,21 +13,21 @@ const TESTIMONIALS = [
       "Avant, je découvrais les notes de mon fils des semaines plus tard. Avec Claristudent, je les vois le jour même. Les alertes en temps réel me donnent une vraie tranquillité d'esprit.",
     name: 'Amara N.',
     role: "Parent d'un élève de 5ème",
-    avatar: 'https://images.pexels.com/photos/7352890/pexels-photo-7352890.jpeg?auto=compress&cs=tinysrgb&w=200',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200',
   },
   {
     quote:
       "En tant que mère qui travaille, je ne peux pas toujours être à l'école. Claristudent me permet d'écrire directement à son enseignant et de savoir qu'il est en classe chaque jour. Ça a tout changé pour nous.",
     name: 'Grace M.',
     role: "Parent d'un élève de CM1",
-    avatar: 'https://images.pexels.com/photos/8054844/pexels-photo-8054844.jpeg?auto=compress&cs=tinysrgb&w=200',
+    avatar: '/IMAGE10.jpeg', // Utilise ton image de la maman
   },
   {
     quote:
       "L'application est si simple que mon mari et moi l'utilisons tous les deux. On reçoit une notification dès qu'il y a une annonce ou un résultat de contrôle. Plus de surprises lors de la réunion parents-enseignants.",
     name: 'Daniel K.',
     role: 'Parent de jumeaux au lycée',
-    avatar: 'https://images.pexels.com/photos/8055801/pexels-photo-8055801.jpeg?auto=compress&cs=tinysrgb&w=200',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200',
   },
 ];
 

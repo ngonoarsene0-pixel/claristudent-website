@@ -8,10 +8,8 @@ import {
   Smartphone,
 } from 'lucide-react';
 
-const ABOUT_IMG =
-  'https://images.pexels.com/photos/8197535/pexels-photo-8197535.jpeg?auto=compress&cs=tinysrgb&w=1000';
-const ABOUT_IMG_2 =
-  'https://images.pexels.com/photos/5211472/pexels-photo-5211472.jpeg?auto=compress&cs=tinysrgb&w=600';
+const ABOUT_IMG = '/IMAGE7.jpeg';
+const ABOUT_IMG_2 = '/IMAGE8.jpeg';
 
 const FEATURES = [
   {
@@ -66,7 +64,7 @@ export default function About() {
               <div className="overflow-hidden rounded-3xl shadow-card ring-1 ring-slate-200/60">
                 <img
                   src={ABOUT_IMG}
-                  alt="Un enseignant interagit avec des élèves dans une salle de classe lumineuse"
+                  alt="Un enseignant interagit avec des élèves dans une salle de classe"
                   className="h-[360px] w-full object-cover sm:h-[440px]"
                   loading="lazy"
                 />
@@ -74,7 +72,7 @@ export default function About() {
               <div className="absolute -bottom-8 -right-4 hidden w-44 overflow-hidden rounded-2xl border-4 border-white shadow-card sm:block lg:-right-8 lg:w-52">
                 <img
                   src={ABOUT_IMG_2}
-                  alt="Une élève souriante dans une salle de classe lumineuse"
+                  alt="Une élève studieuse en classe"
                   className="h-32 w-full object-cover lg:h-40"
                   loading="lazy"
                 />
