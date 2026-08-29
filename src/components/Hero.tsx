@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Download, MessageCircle, ShieldCheck, Bell, Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Download, MessageCircle, ShieldCheck, Bell, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const APK_URL = 'https://drive.google.com/file/d/1aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789/view';
 const WHATSAPP_URL = 'https://wa.me/237693338925?text=Bonjour%20Claristudent%2C%20je%20souhaite%20obtenir%20plus%20d%27informations.';
@@ -38,7 +38,7 @@ export default function Hero() {
           <div className="max-w-xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 text-xs font-semibold text-brand-700">
               <span className="flex h-2 w-2 rounded-full bg-brand-600" />
-              La confiance des parents du monde entier
+              La confiance des familles camerounaises
             </span>
 
             <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
@@ -53,7 +53,7 @@ export default function Hero() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a href={APK_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
                 <Download className="h-5 w-5" />
-                Télécharger l'APK
+                Télécharger l'application
               </a>
               <a
                 href={WHATSAPP_URL}
@@ -62,7 +62,7 @@ export default function Hero() {
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:bg-[#1ebd5d] active:scale-95"
               >
                 <MessageCircle className="h-5 w-5" />
-                Contactez-nous via WhatsApp
+                Discuter avec nous sur WhatsApp
               </a>
             </div>
 
@@ -74,7 +74,7 @@ export default function Hero() {
                 <Bell className="h-4 w-4 text-brand-600" /> Alertes en temps réel
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <Star className="h-4 w-4 text-gold-500" /> Note de 4,9/5 des parents
+                <ShieldCheck className="h-4 w-4 text-brand-600" /> Établissements partenaires au Cameroun
               </span>
             </div>
           </div>
@@ -132,19 +132,9 @@ export default function Hero() {
                   </span>
                   <div>
                     <p className="text-2xl font-bold text-slate-900">98%</p>
-                    <p className="text-xs text-slate-500">Alertes livrées instantanément</p>
+                    <p className="text-xs text-slate-500">Informé dès que ça se passe à l'école</p>
                   </div>
                 </div>
-              </div>
-
-              {/* Badge de Note Flottant */}
-              <div className="absolute top-8 -right-6 hidden rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-xl backdrop-blur sm:block z-30">
-                <div className="flex items-center gap-1 text-gold-500">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-current" />
-                  ))}
-                </div>
-                <p className="mt-1 text-xs font-medium text-slate-600">Adoré par plus de 10 000 parents</p>
               </div>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Mail, Shield, User, Send, CheckCircle2, AlertCircle } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -19,6 +20,7 @@ export default function Contact() {
     setErrorMsg('');
 
     try {
+      // 1. Enregistrement dans Supabase
       const { error } = await supabase
         .from('contacts')
         .insert([
@@ -32,6 +34,22 @@ export default function Contact() {
 
       if (error) throw error;
 
+      // 2. Envoi de l'e-mail via EmailJS
+      const templateParams = {
+        to_email: formData.department,
+        name: formData.name,
+        email: formData.email,
+        department: formData.department,
+        message: formData.message,
+      };
+
+      await emailjs.send(
+        'service_vr79fs',
+        'd2cvwkv',
+        templateParams,
+        'd1xr1YKcAhuN2iVIh'
+      );
+
       setSubmitted(true);
       setFormData({ name: '', email: '', department: 'info@claristudent.com', message: '' });
 
@@ -39,7 +57,7 @@ export default function Contact() {
         setSubmitted(false);
       }, 5000);
     } catch (err: any) {
-      console.error('Erreur Supabase:', err);
+      console.error('Erreur:', err);
       setErrorMsg('Une erreur est survenue lors de l\'envoi. Veuillez réessayer.');
     } finally {
       setLoading(false);
@@ -112,7 +130,7 @@ export default function Contact() {
                 <CheckCircle2 className="h-16 w-16 text-green-500 mx-auto animate-bounce" />
                 <h3 className="text-2xl font-bold text-slate-900">Message bien reçu !</h3>
                 <p className="text-slate-600">
-                  Merci de nous avoir contactés. Votre message a bien été enregistré dans nos serveurs.
+                  Merci de nous avoir contactés. Votre message a bien été envoyé et enregistré.
                 </p>
               </div>
             ) : (

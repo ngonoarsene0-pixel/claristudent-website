@@ -10,13 +10,7 @@
 
   @media (min-width: 768px) {
     html {
-      font-size: 18px; /* Taille sur tablette */
-    }
-  }
-
-  @media (min-width: 1024px) {
-    html {
-      font-size: 20px; /* Grande taille sur ordinateur */
+      font-size: 18px; /* Taille fixée à 18px sur tablette et ordinateur */
     }
   }
 

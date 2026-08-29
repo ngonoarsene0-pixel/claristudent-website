@@ -14,39 +14,39 @@ const ABOUT_IMG_2 = '/IMAGE8.jpeg';
 const FEATURES = [
   {
     icon: LineChart,
-    title: 'Notes et présence en temps réel',
+    title: 'Notes en temps réel',
     description:
-      "Consultez les notes et la présence de votre enfant dès leur enregistrement. Fini l'attente des bulletins.",
+      'Ne découvrez plus les résultats de votre enfant des semaines plus tard. Consultez-les dès leur publication.',
   },
   {
     icon: MessagesSquare,
-    title: 'Discussion fluide parent-enseignant',
+    title: 'Suivi des absences et retards',
     description:
-      "Échangez directement avec les enseignants dans l'application. Posez vos questions, partagez des nouvelles et suivez les progrès ensemble.",
+      "Soyez informé dès qu'une absence ou un retard est enregistré, sans attendre le bulletin.",
   },
   {
     icon: ShieldCheck,
-    title: '100% sécurité des données',
+    title: 'Suivi disciplinaire',
     description:
-      "Les informations de votre famille sont chiffrées de bout en bout et jamais partagées. La confidentialité est intégrée dès la conception.",
+      'Accédez aux sanctions et informations disciplinaires concernant votre enfant, en toute transparence.',
   },
   {
     icon: Bell,
-    title: 'Alertes instantanées',
+    title: 'Informations financières claires',
     description:
-      "Recevez des notifications pour les absences, les notes, les annonces et les événements scolaires — au moment où ils se produisent.",
+      'Suivez la situation financière de la scolarité de votre enfant à tout moment.',
   },
   {
     icon: CalendarCheck,
-    title: 'Calendrier et emploi du temps',
+    title: 'Un seul compte, tous vos enfants',
     description:
-      "Visualisez les contrôles, les devoirs et les vacances dans un calendrier clair pour ne jamais manquer une échéance.",
+      'Suivez la scolarité de chacun de vos enfants depuis un seul et même compte.',
   },
   {
     icon: Smartphone,
-    title: 'Conçu pour les parents occupés',
+    title: 'Vos données protégées',
     description:
-      "Une interface simple et conviviale, pensée pour les parents — pas pour les administrateurs. Prêt en moins de deux minutes.",
+      "Chaque parent n'accède qu'aux informations de son propre enfant. Confidentialité garantie.",
   },
 ];
 
@@ -61,7 +61,6 @@ export default function About() {
         <div className="container-px">
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div ref={imgRef} className={`reveal ${imgVisible ? 'is-visible' : ''} relative`}>
-              {/* Image principale plus grande et plus imposante */}
               <div className="overflow-hidden rounded-3xl shadow-card ring-1 ring-slate-200/60">
                 <img
                   src={ABOUT_IMG}
@@ -71,7 +70,6 @@ export default function About() {
                 />
               </div>
 
-              {/* Incrustation plus large et mieux positionnée */}
               <div className="absolute -bottom-6 -right-2 hidden w-52 overflow-hidden rounded-2xl border-4 border-white shadow-card sm:block lg:-bottom-8 lg:-right-6 lg:w-64">
                 <img
                   src={ABOUT_IMG_2}
@@ -85,22 +83,20 @@ export default function About() {
 
             <div>
               <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-4 py-1.5 text-xs font-semibold text-brand-700">
-                À propos de Claristudent
+                Notre mission
               </span>
               <h2 className="mt-5 font-display text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl">
-                Créé par des parents, pour des parents qui veulent l'esprit tranquille.
+                Un pont numérique entre l'école et la famille.
               </h2>
               <p className="mt-5 text-lg leading-relaxed text-slate-600">
-                Claristudent rapproche la maison et l'école. Nous vous offrons une fenêtre claire et
-                en temps réel sur la journée de votre enfant — notes, présence, messages des
-                enseignants et annonces de l'école — le tout dans un espace calme et sécurisé.
+                Un parent ne devrait jamais être le dernier à savoir comment évolue la scolarité de son enfant. Claristudent donne aux familles camerounaises un accès clair aux notes, absences, retards, sanctions et informations financières de leurs enfants, en toute simplicité.
               </p>
 
               <ul className="mt-8 space-y-4">
                 {[
-                  "Plus de surprises en fin de trimestre — suivez les progrès semaine par semaine.",
-                  "Messagerie directe et privée avec les enseignants et le personnel scolaire.",
-                  "Un chiffrement de niveau bancaire protège les données de votre enfant.",
+                  "Plus de surprises en fin de trimestre : suivez les résultats et l'assiduité au fil du trimestre.",
+                  "Un accès pensé pour le secondaire camerounais, en français comme en anglais.",
+                  "Chaque parent ne voit que les informations de son propre enfant : accès sécurisé et confidentiel.",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <span className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-brand-600 text-white">
@@ -129,10 +125,10 @@ export default function About() {
               Fonctionnalités
             </span>
             <h2 className="mt-5 font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              Tout ce qu'il faut pour rester connecté.
+              L'école, sans zones d'ombre.
             </h2>
             <p className="mt-4 text-lg text-slate-600">
-              Des outils réfléchis qui vous informent et vous impliquent — sans le bruit.
+              Les informations essentielles sur la scolarité de votre enfant, claires et accessibles à tout moment.
             </p>
           </div>
 
