@@ -34,7 +34,7 @@ export default function Contact() {
 
       if (error) throw error;
 
-      // 2. Envoi de l'e-mail via EmailJS
+      // 2. Envoi de l'e-mail via EmailJS (avec les bons IDs mis à jour)
       const templateParams = {
         to_email: formData.department,
         name: formData.name,
@@ -45,7 +45,7 @@ export default function Contact() {
 
       await emailjs.send(
         'service_vr79fs',
-        'd2cvwkv',
+        'template_yjlu0emt',
         templateParams,
         'd1xr1YKcAhuN2iVIh'
       );
