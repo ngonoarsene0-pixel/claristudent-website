@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Download, MessageCircle, ShieldCheck, Bell, ChevronLeft, ChevronRight } from 'lucide-react';
+import { translations, Language } from '../translations';
+import { handleAppDownload } from '../util/download';
 
-const APK_URL = 'https://drive.google.com/file/d/1aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789/view';
-const WHATSAPP_URL = 'https://wa.me/237693338925?text=Bonjour%20Claristudent%2C%20je%20souhaite%20obtenir%20plus%20d%27informations.';
+const WHATSAPP_URL = 'https://wa.me/237697591412?text=Bonjour%20Claristudent%2C%20je%20souhaite%20obtenir%20plus%20d%27informations.';
 
 // Captures d'écran disponibles dans ton dossier public
 const SCREENS = [
@@ -15,8 +16,15 @@ const SCREENS = [
   '/image6.jpeg'
 ];
 
-export default function Hero() {
+interface HeroProps {
+  lang: Language;
+}
+
+export default function Hero({ lang }: HeroProps) {
   const [currentScreen, setCurrentScreen] = useState(0);
+
+  // Dictionnaire actif
+  const t = translations[lang];
 
   const nextScreen = () => {
     setCurrentScreen((prev) => (prev + 1) % SCREENS.length);
@@ -38,23 +46,23 @@ export default function Hero() {
           <div className="max-w-xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 text-xs font-semibold text-brand-700">
               <span className="flex h-2 w-2 rounded-full bg-brand-600" />
-              La confiance des familles camerounaises
+              {lang === 'fr' ? "La confiance des familles camerounaises" : "Trusted by Cameroonian families"}
             </span>
 
             <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.1] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-              Tout ce qui compte pour l'éducation de votre enfant,{' '}
-              <span style={{ color: '#3053C2' }}>au même endroit.</span>
+              {t.hero.title}{' '}
+              <span style={{ color: '#3053C2' }}>{lang === 'fr' ? 'au même endroit.' : 'in one place.'}</span>
             </h1>
 
             <p className="mt-6 text-lg leading-relaxed text-slate-600">
-              Suivez la scolarité de votre enfant en temps réel et restez tranquille, où que vous soyez.
+              {t.hero.subtitle}
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <a href={APK_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
+              <button onClick={handleAppDownload} className="btn-primary cursor-pointer">
                 <Download className="h-5 w-5" />
-                Télécharger l'application
-              </a>
+                {t.hero.download}
+              </button>
               <a
                 href={WHATSAPP_URL}
                 target="_blank"
@@ -62,19 +70,19 @@ export default function Hero() {
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:bg-[#1ebd5d] active:scale-95"
               >
                 <MessageCircle className="h-5 w-5" />
-                Discuter avec nous sur WhatsApp
+                {lang === 'fr' ? "Discuter avec nous sur WhatsApp" : "Chat with us on WhatsApp"}
               </a>
             </div>
 
             <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-slate-500">
               <span className="inline-flex items-center gap-1.5">
-                <ShieldCheck className="h-4 w-4 text-brand-600" /> 100% Sécurisé
+                <ShieldCheck className="h-4 w-4 text-brand-600" /> {lang === 'fr' ? '100% Sécurisé' : '100% Secure'}
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <Bell className="h-4 w-4 text-brand-600" /> Alertes en temps réel
+                <Bell className="h-4 w-4 text-brand-600" /> {lang === 'fr' ? 'Alertes en temps réel' : 'Real-time alerts'}
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <ShieldCheck className="h-4 w-4 text-brand-600" /> Établissements partenaires au Cameroun
+                <ShieldCheck className="h-4 w-4 text-brand-600" /> {lang === 'fr' ? 'Établissements partenaires au Cameroun' : 'Partner schools in Cameroon'}
               </span>
             </div>
           </div>
@@ -132,7 +140,7 @@ export default function Hero() {
                   </span>
                   <div>
                     <p className="text-2xl font-bold text-slate-900">98%</p>
-                    <p className="text-xs text-slate-500">Informé dès que ça se passe à l'école</p>
+                    <p className="text-xs text-slate-500">{lang === 'fr' ? "Informé dès que ça se passe à l'école" : "Notified as soon as it happens at school"}</p>
                   </div>
                 </div>
               </div>

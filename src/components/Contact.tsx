@@ -1,208 +1,178 @@
 import { useState } from 'react';
-import { Mail, Shield, User, Send, CheckCircle2, AlertCircle } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
-import emailjs from '@emailjs/browser';
+import { Mail, Send, CheckCircle2 } from 'lucide-react';
+import { Language } from '../translations';
 
-export default function Contact() {
+interface ContactProps {
+  lang: Language;
+}
+
+const CONTACT_IMG = '/IMAG10.jpeg';
+
+export default function Contact({ lang }: ContactProps) {
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    department: 'info@claristudent.com',
     message: '',
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setErrorMsg('');
+    
+    const recipient = "info@claristudent.com";
+    const subject = encodeURIComponent(
+      lang === 'fr' 
+        ? `Message de ${formData.name} via le site Claristudent` 
+        : `Message from ${formData.name} via Claristudent website`
+    );
+    const body = encodeURIComponent(
+      lang === 'fr'
+        ? `Nom complet : ${formData.name}\nAdresse e-mail : ${formData.email}\n\nMessage :\n${formData.message}`
+        : `Full Name: ${formData.name}\nEmail Address: ${formData.email}\n\nMessage:\n${formData.message}`
+    );
 
-    try {
-      // 1. Enregistrement dans Supabase
-      const { error } = await supabase
-        .from('contacts')
-        .insert([
-          {
-            name: formData.name,
-            email: formData.email,
-            department: formData.department,
-            message: formData.message,
-          },
-        ]);
+    // Détection automatique : Si c'est un appareil mobile, on utilise le lien mailto: natif (ultra fiable sur mobile)
+    // Si c'est un PC, on ouvre directement le lien web Gmail de bureau
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-      if (error) throw error;
-
-      // 2. Envoi de l'e-mail via EmailJS (avec les bons IDs mis à jour)
-      const templateParams = {
-        to_email: formData.department,
-        name: formData.name,
-        email: formData.email,
-        department: formData.department,
-        message: formData.message,
-      };
-
-      await emailjs.send(
-        'service_vr79fs',
-        'template_yjlu0emt',
-        templateParams,
-        'd1xr1YKcAhuN2iVIh'
-      );
-
-      setSubmitted(true);
-      setFormData({ name: '', email: '', department: 'info@claristudent.com', message: '' });
-
-      setTimeout(() => {
-        setSubmitted(false);
-      }, 5000);
-    } catch (err: any) {
-      console.error('Erreur:', err);
-      setErrorMsg('Une erreur est survenue lors de l\'envoi. Veuillez réessayer.');
-    } finally {
-      setLoading(false);
+    if (isMobile) {
+      window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+    } else {
+      window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${recipient}&su=${subject}&body=${body}`, '_blank');
     }
+
+    setSubmitted(true);
+    setFormData({ name: '', email: '', message: '' });
+    setTimeout(() => {
+      setSubmitted(false);
+    }, 5000);
   };
 
   return (
-    <section id="contact" className="py-20 bg-slate-50">
-      <div className="container-px mx-auto max-w-7xl">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 text-xs font-semibold text-brand-700">
-            Contactez-nous
-          </span>
-          <h2 className="mt-4 font-display text-3xl font-extrabold text-slate-900 sm:text-4xl">
-            Une question ? Une collaboration ? <br />
-            <span style={{ color: '#3053C2' }}>Écrivez-nous directement</span>
-          </h2>
-          <p className="mt-4 text-slate-600">
-            Choisissez le service concerné ou envoyez-nous un message grâce au formulaire ci-dessous.
-          </p>
-        </div>
+    <section id="contact" className="section-py bg-white">
+      <div className="container-px">
+        <div className="relative overflow-hidden rounded-3xl bg-brand-600 text-white shadow-card">
+          <div className="grid items-center lg:grid-cols-2">
+            
+            {/* Formulaire avec largeur réduite et adaptée */}
+            <div className="p-8 sm:p-12 lg:p-16">
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold text-white backdrop-blur-sm">
+                <Mail className="h-3.5 w-3.5" /> {lang === 'fr' ? 'Contactez-nous' : 'Contact Us'}
+              </span>
+              <h2 className="mt-5 font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                {lang === 'fr' ? 'Une question ? Une collaboration ?' : 'Have a question? A collaboration?'} <br />
+                <span className="text-gold-300">
+                  {lang === 'fr' ? 'Écrivez-nous directement' : 'Write to us directly'}
+                </span>
+              </h2>
 
-        <div className="grid gap-12 lg:grid-cols-12 items-start">
-          {/* Adresses e-mails par service */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
-              <div className="p-3 bg-brand-50 rounded-xl text-brand-600">
-                <Mail className="h-6 w-6" />
-              </div>
-              <div>
-                <h3 className="font-bold text-slate-900">Informations Générales</h3>
-                <p className="text-sm text-slate-500 mb-2">Pour toutes vos questions courantes et renseignements.</p>
-                <a href="mailto:info@claristudent.com" className="text-sm font-semibold text-brand-600 hover:underline">
-                  info@claristudent.com
-                </a>
-              </div>
-            </div>
-
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
-              <div className="p-3 bg-brand-50 rounded-xl text-brand-600">
-                <User className="h-6 w-6" />
-              </div>
-              <div>
-                <h3 className="font-bold text-slate-900">Administration & Fondateur</h3>
-                <p className="text-sm text-slate-500 mb-2">Pour les partenariats, propositions et la direction.</p>
-                <a href="mailto:admin@claristudent.com" className="text-sm font-semibold text-brand-600 hover:underline">
-                  admin@claristudent.com
-                </a>
-              </div>
-            </div>
-
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
-              <div className="p-3 bg-brand-50 rounded-xl text-brand-600">
-                <Shield className="h-6 w-6" />
-              </div>
-              <div>
-                <h3 className="font-bold text-slate-900">Support Technique</h3>
-                <p className="text-sm text-slate-500 mb-2">Pour signaler un problème technique ou obtenir de l'aide.</p>
-                <a href="mailto:support@claristudent.com" className="text-sm font-semibold text-brand-600 hover:underline">
-                  support@claristudent.com
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Formulaire de message */}
-          <div className="lg:col-span-7 bg-white p-8 rounded-3xl border border-slate-200 shadow-lg">
-            {submitted ? (
-              <div className="py-12 text-center space-y-4">
-                <CheckCircle2 className="h-16 w-16 text-green-500 mx-auto animate-bounce" />
-                <h3 className="text-2xl font-bold text-slate-900">Message bien reçu !</h3>
-                <p className="text-slate-600">
-                  Merci de nous avoir contactés. Votre message a bien été envoyé et enregistré.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {errorMsg && (
-                  <div className="p-4 rounded-xl bg-red-50 border border-red-200 flex items-center gap-3 text-red-700 text-sm">
-                    <AlertCircle className="h-5 w-5 flex-none" />
-                    <span>{errorMsg}</span>
-                  </div>
-                )}
-
-                <div className="grid gap-6 md:grid-cols-2">
+              {submitted ? (
+                <div className="mt-8 max-w-md flex items-center gap-3 rounded-2xl bg-white/10 p-4 text-white backdrop-blur-sm">
+                  <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-gold-400" />
+                  <p className="text-sm font-medium">
+                    {lang === 'fr' 
+                      ? 'Votre message a été préparé avec succès dans votre messagerie !' 
+                      : 'Your message has been successfully prepared in your email client!'}
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="mt-6 space-y-4 max-w-md">
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Votre nom complet</label>
+                    <label className="block text-xs font-medium text-brand-100 mb-1">
+                      {lang === 'fr' ? 'Votre nom complet' : 'Your full name'}
+                    </label>
                     <input
                       type="text"
                       required
-                      placeholder="Nom et Prénom"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                      placeholder={lang === 'fr' ? 'Nom et Prénom' : 'First and Last Name'}
+                      className="w-full rounded-xl bg-white px-4 py-3 text-slate-900 placeholder-slate-400 outline-none transition focus:ring-2 focus:ring-gold-400 text-sm"
                     />
                   </div>
+
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Votre adresse e-mail</label>
+                    <label className="block text-xs font-medium text-brand-100 mb-1">
+                      {lang === 'fr' ? 'Votre adresse e-mail' : 'Your email address'}
+                    </label>
                     <input
                       type="email"
                       required
-                      placeholder="exemple@email.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                      placeholder="exemple@email.com"
+                      className="w-full rounded-xl bg-white px-4 py-3 text-slate-900 placeholder-slate-400 outline-none transition focus:ring-2 focus:ring-gold-400 text-sm"
                     />
                   </div>
-                </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Service à contacter</label>
-                  <select
-                    value={formData.department}
-                    onChange={(e) => setFormData({ ...formData, department: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white"
+                  <div>
+                    <label className="block text-xs font-medium text-brand-100 mb-1">
+                      {lang === 'fr' ? 'Destinataire' : 'Recipient'}
+                    </label>
+                    <a 
+                      href="mailto:info@claristudent.com"
+                      className="w-full rounded-xl bg-white/20 px-4 py-3 text-white text-sm font-medium border border-white/20 flex items-center justify-between hover:bg-white/30 transition block"
+                    >
+                      <span className="text-gold-300 font-semibold underline">info@claristudent.com</span>
+                      <span className="text-[11px] bg-white/20 px-2 py-0.5 rounded text-white">Direct</span>
+                    </a>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-medium text-brand-100 mb-1">
+                      {lang === 'fr' ? 'Votre message' : 'Your message'}
+                    </label>
+                    <textarea
+                      rows={3}
+                      required
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      placeholder={lang === 'fr' ? "Comment pouvons-nous vous aider ?" : "How can we help you?"}
+                      className="w-full rounded-xl bg-white px-4 py-3 text-slate-900 placeholder-slate-400 outline-none transition focus:ring-2 focus:ring-gold-400 text-sm resize-none"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-gold-400 px-6 py-3.5 font-bold text-slate-900 shadow-lg transition hover:bg-gold-300 active:scale-95 text-sm"
                   >
-                    <option value="info@claristudent.com">Informations Générales (info@claristudent.com)</option>
-                    <option value="admin@claristudent.com">Administration / Direction (admin@claristudent.com)</option>
-                    <option value="support@claristudent.com">Support Technique (support@claristudent.com)</option>
-                  </select>
-                </div>
+                    <Send className="h-4 w-4" />
+                    {lang === 'fr' ? 'Envoyer le message' : 'Send message'}
+                  </button>
+                </form>
+              )}
+            </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Votre message</label>
-                  <textarea
-                    rows={4}
-                    required
-                    placeholder="Comment pouvons-nous vous aider ?"
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500"
-                  />
-                </div>
+            {/* Image conservée */}
+            <div className="relative h-64 min-h-[350px] sm:h-80 lg:h-full">
+              <img
+                src={CONTACT_IMG}
+                alt={lang === 'fr' ? "Une élève accompagnée de sa maman" : "A student with her mother"}
+                className="h-full w-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-600/60 via-transparent lg:bg-gradient-to-r lg:from-brand-600 lg:to-transparent" />
+            </div>
 
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full btn-primary justify-center py-4 text-base disabled:opacity-50"
-                >
-                  <Send className="h-5 w-5" />
-                  {loading ? 'Envoi en cours...' : 'Envoyer le message'}
-                </button>
-              </form>
-            )}
           </div>
+
+          {/* Informations générales en bas */}
+          <div className="bg-brand-700/80 px-8 py-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs text-brand-100">
+            <div className="flex items-center gap-2">
+              <Mail className="h-4 w-4 text-gold-400" />
+              <span>{lang === 'fr' ? 'Contact direct :' : 'Direct contact:'}</span>
+              <a 
+                href="mailto:info@claristudent.com" 
+                className="font-bold text-white underline hover:text-gold-300"
+              >
+                info@claristudent.com
+              </a>
+            </div>
+            <div>
+              <span>{lang === 'fr' ? 'Claristudent — Tous droits réservés' : 'Claristudent — All rights reserved'}</span>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

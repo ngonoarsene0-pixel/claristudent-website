@@ -7,52 +7,65 @@ import {
   CalendarCheck,
   Smartphone,
 } from 'lucide-react';
+import { translations, Language } from '../translations';
 
 const ABOUT_IMG = '/IMAGE7.jpeg';
 const ABOUT_IMG_2 = '/IMAGE8.jpeg';
 
-const FEATURES = [
-  {
-    icon: LineChart,
-    title: 'Notes en temps réel',
-    description:
-      'Ne découvrez plus les résultats de votre enfant des semaines plus tard. Consultez-les dès leur publication.',
-  },
-  {
-    icon: MessagesSquare,
-    title: 'Suivi des absences et retards',
-    description:
-      "Soyez informé dès qu'une absence ou un retard est enregistré, sans attendre le bulletin.",
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Suivi disciplinaire',
-    description:
-      'Accédez aux sanctions et informations disciplinaires concernant votre enfant, en toute transparence.',
-  },
-  {
-    icon: Bell,
-    title: 'Informations financières claires',
-    description:
-      'Suivez la situation financière de la scolarité de votre enfant à tout moment.',
-  },
-  {
-    icon: CalendarCheck,
-    title: 'Un seul compte, tous vos enfants',
-    description:
-      'Suivez la scolarité de chacun de vos enfants depuis un seul et même compte.',
-  },
-  {
-    icon: Smartphone,
-    title: 'Vos données protégées',
-    description:
-      "Chaque parent n'accède qu'aux informations de son propre enfant. Confidentialité garantie.",
-  },
-];
+interface AboutProps {
+  lang: Language;
+}
 
-export default function About() {
+export default function About({ lang }: AboutProps) {
   const { ref: imgRef, visible: imgVisible } = useReveal();
   const { ref: gridRef, visible: gridVisible } = useReveal();
+
+  const t = translations[lang];
+
+  const FEATURES = [
+    {
+      icon: LineChart,
+      title: lang === 'fr' ? 'Notes en temps réel' : 'Real-time grades',
+      description: lang === 'fr' 
+        ? "Ne découvrez plus les résultats de votre enfant des semaines plus tard. Consultez-les dès leur publication." 
+        : "Never discover your child's results weeks later. Check them as soon as they are published.",
+    },
+    {
+      icon: MessagesSquare,
+      title: lang === 'fr' ? 'Suivi des absences et retards' : 'Attendance tracking',
+      description: lang === 'fr'
+        ? "Soyez informé dès qu'une absence ou un retard est enregistré, sans attendre le bulletin."
+        : "Be notified as soon as an absence or delay is recorded, without waiting for the report card.",
+    },
+    {
+      icon: ShieldCheck,
+      title: lang === 'fr' ? 'Suivi disciplinaire' : 'Disciplinary records',
+      description: lang === 'fr'
+        ? 'Accédez aux sanctions et informations disciplinaires concernant votre enfant, en toute transparence.'
+        : 'Access sanctions and disciplinary information regarding your child with complete transparency.',
+    },
+    {
+      icon: Bell,
+      title: lang === 'fr' ? 'Informations financières claires' : 'Clear financial info',
+      description: lang === 'fr'
+        ? 'Suivez la situation financière de la scolarité de votre enfant à tout moment.'
+        : "Track your child's school fee status at any time.",
+    },
+    {
+      icon: CalendarCheck,
+      title: lang === 'fr' ? 'Un seul compte, tous vos enfants' : 'One account, all your children',
+      description: lang === 'fr'
+        ? 'Suivez la scolarité de chacun de vos enfants depuis un seul et même compte.'
+        : "Track each of your children's schooling from a single account.",
+    },
+    {
+      icon: Smartphone,
+      title: lang === 'fr' ? 'Vos données protégées' : 'Your data protected',
+      description: lang === 'fr'
+        ? "Chaque parent n'accède qu'aux informations de son propre enfant. Confidentialité garantie."
+        : "Each parent only accesses their own child's information. Privacy guaranteed.",
+    },
+  ];
 
   return (
     <>
@@ -83,20 +96,28 @@ export default function About() {
 
             <div>
               <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-4 py-1.5 text-xs font-semibold text-brand-700">
-                Notre mission
+                {lang === 'fr' ? 'Notre mission' : 'Our mission'}
               </span>
               <h2 className="mt-5 font-display text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl">
-                Un pont numérique entre l'école et la famille.
+                {lang === 'fr' ? "Un pont numérique entre l'école et la famille." : "A digital bridge between school and family."}
               </h2>
               <p className="mt-5 text-lg leading-relaxed text-slate-600">
-                Un parent ne devrait jamais être le dernier à savoir comment évolue la scolarité de son enfant. Claristudent donne aux familles camerounaises un accès clair aux notes, absences, retards, sanctions et informations financières de leurs enfants, en toute simplicité.
+                {lang === 'fr' 
+                  ? "Un parent ne devrait jamais être le dernier à savoir comment évolue la scolarité de son enfant. Claristudent donne aux familles camerounaises un accès clair aux notes, absences, retards, sanctions et informations financières de leurs enfants, en toute simplicité."
+                  : "A parent should never be the last to know how their child is progressing academically. Claristudent gives Cameroonian families clear access to grades, absences, delays, sanctions, and financial information simply."}
               </p>
 
               <ul className="mt-8 space-y-4">
                 {[
-                  "Plus de surprises en fin de trimestre : suivez les résultats et l'assiduité au fil du trimestre.",
-                  "Un accès pensé pour le secondaire camerounais, en français comme en anglais.",
-                  "Chaque parent ne voit que les informations de son propre enfant : accès sécurisé et confidentiel.",
+                  lang === 'fr' 
+                    ? "Plus de surprises en fin de trimestre : suivez les résultats et l'assiduité au fil du trimestre."
+                    : "No more end-of-term surprises: track results and attendance throughout the term.",
+                  lang === 'fr' 
+                    ? "Un accès pensé pour le secondaire camerounais, en français comme en anglais."
+                    : "Access designed for secondary education in Cameroon, in both French and English.",
+                  lang === 'fr' 
+                    ? "Chaque parent ne voit que les informations de son propre enfant : accès sécurisé et confidentiel."
+                    : "Each parent sees only their own child's information: secure and confidential access.",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <span className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-brand-600 text-white">
@@ -122,13 +143,15 @@ export default function About() {
         <div className="container-px">
           <div className="mx-auto max-w-2xl text-center">
             <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-4 py-1.5 text-xs font-semibold text-brand-700">
-              Fonctionnalités
+              {lang === 'fr' ? 'Fonctionnalités' : 'Features'}
             </span>
             <h2 className="mt-5 font-display text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              L'école, sans zones d'ombre.
+              {lang === 'fr' ? "L'école, sans zones d'ombre." : "School, without blind spots."}
             </h2>
             <p className="mt-4 text-lg text-slate-600">
-              Les informations essentielles sur la scolarité de votre enfant, claires et accessibles à tout moment.
+              {lang === 'fr' 
+                ? "Les informations essentielles sur la scolarité de votre enfant, claires et accessibles à tout moment."
+                : "Essential information about your child's schooling, clear and accessible at all times."}
             </p>
           </div>
 

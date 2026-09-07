@@ -1,26 +1,17 @@
 import { Mail, Phone, MapPin } from 'lucide-react';
+import { Language } from '../translations';
+import { handleAppDownload } from '../util/download';
 
-const APK_URL = 'https://drive.google.com/file/d/1aBcDeFgHiJkLmNoPqRsTuVwXyZ0123456789/view';
-const WHATSAPP_URL = 'https://wa.me/237693338925';
+interface FooterProps {
+  lang: Language;
+}
 
-const NAV = [
-  { label: 'Accueil', href: '#home' },
-  { label: 'À propos', href: '#about' },
-  { label: 'Fonctionnalités', href: '#features' },
-  { label: 'Newsletter', href: '#newsletter' },
-  { label: 'Contact', href: '#contact' },
-];
-
-const LEGAL = [
-  { label: 'Politique de confidentialité', href: '#' },
-  { label: "Conditions d'utilisation", href: '#' },
-  { label: 'Politique des cookies', href: '#' },
-];
+const WHATSAPP_URL = 'https://wa.me/237697591412';
 
 const SOCIALS = [
   { 
     label: 'Facebook',
-    href: 'https://facebook.com/ton-lien-ici', // Remplace par ton lien Facebook
+    href: 'https://www.facebook.com/share/1JzhU1fjDY/',
     colorClass: 'text-[#1877F2] hover:bg-[#1877F2]/10 border-[#1877F2]/30',
     svg: (
       <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
@@ -29,18 +20,18 @@ const SOCIALS = [
     )
   },
   { 
-    label: 'Instagram',
-    href: 'https://instagram.com/ton-lien-ici', // Remplace par ton lien Instagram
-    colorClass: 'text-[#E4405F] hover:bg-[#E4405F]/10 border-[#E4405F]/30',
+    label: 'WhatsApp',
+    href: WHATSAPP_URL,
+    colorClass: 'text-[#25D366] hover:bg-[#25D366]/10 border-[#25D366]/30',
     svg: (
       <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
-        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
       </svg>
     )
   },
   { 
     label: 'TikTok',
-    href: 'https://tiktok.com/@ton-lien-ici', // Remplace par ton lien TikTok
+    href: 'https://www.tiktok.com/@claristudent?_r=1&_t=ZS-99KHe5jtJeW',
     colorClass: 'text-slate-900 hover:bg-slate-900/10 border-slate-900/30',
     svg: (
       <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
@@ -50,14 +41,28 @@ const SOCIALS = [
   },
 ];
 
-export default function Footer() {
+export default function Footer({ lang }: FooterProps) {
+  const NAV = [
+    { label: lang === 'fr' ? 'Accueil' : 'Home', href: '#home' },
+    { label: lang === 'fr' ? 'À propos' : 'About', href: '#about' },
+    { label: lang === 'fr' ? 'Fonctionnalités' : 'Features', href: '#features' },
+    { label: lang === 'fr' ? 'Newsletter' : 'Newsletter', href: '#newsletter' },
+    { label: lang === 'fr' ? 'Contact' : 'Contact', href: '#contact' },
+  ];
+
+  const LEGAL = [
+    { label: lang === 'fr' ? 'Politique de confidentialité' : 'Privacy Policy', href: '#' },
+    { label: lang === 'fr' ? "Conditions d'utilisation" : 'Terms of Use', href: '#' },
+    { label: lang === 'fr' ? 'Politique des cookies' : 'Cookie Policy', href: '#' },
+  ];
+
   return (
     <footer className="border-t border-slate-200 bg-slate-50">
       <div className="container-px py-16">
         <div className="grid gap-10 lg:grid-cols-12">
           {/* Marque */}
           <div className="lg:col-span-4">
-            <a href="#home" className="flex items-center gap-3" aria-label="Claristudent accueil">
+            <a href="#home" className="flex items-center gap-3" aria-label={lang === 'fr' ? "Claristudent accueil" : "Claristudent home"}>
               <img 
                 src="/logo.jpeg" 
                 alt="Logo Claristudent" 
@@ -69,8 +74,9 @@ export default function Footer() {
               </span>
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate-500">
-              Tout ce qui compte pour l'éducation de votre enfant, au même endroit. Suivez la
-              scolarité en temps réel et restez tranquille, où que vous soyez.
+              {lang === 'fr'
+                ? "Tout ce qui compte pour l'éducation de votre enfant, au même endroit. Suivez la scolarité en temps réel et restez tranquille, où que vous soyez."
+                : "Everything that matters for your child's education, in one place. Track schooling in real time and stay at ease, wherever you are."}
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               {SOCIALS.map((s) => {
@@ -92,7 +98,9 @@ export default function Footer() {
 
           {/* Navigation */}
           <div className="lg:col-span-2">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900">Explorer</h3>
+            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900">
+              {lang === 'fr' ? 'Explorer' : 'Explore'}
+            </h3>
             <ul className="mt-4 space-y-3">
               {NAV.map((link) => (
                 <li key={link.href}>
@@ -109,7 +117,9 @@ export default function Footer() {
 
           {/* Légal */}
           <div className="lg:col-span-2">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900">Légal</h3>
+            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900">
+              {lang === 'fr' ? 'Légal' : 'Legal'}
+            </h3>
             <ul className="mt-4 space-y-3">
               {LEGAL.map((link) => (
                 <li key={link.label}>
@@ -126,54 +136,45 @@ export default function Footer() {
 
           {/* Contact */}
           <div className="lg:col-span-4">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900">Adresses & Contact</h3>
+            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900">
+              {lang === 'fr' ? 'Adresses & Contact' : 'Address & Contact'}
+            </h3>
             <ul className="mt-4 space-y-2.5 text-sm text-slate-500">
               <li className="flex items-center gap-3">
                 <Mail className="h-4 w-4 flex-none text-brand-600" />
-                <a href="mailto:info@claristudent.com" className="transition-colors hover:text-brand-600">
+                <a 
+                  href="mailto:info@claristudent.com" 
+                  className="transition-colors hover:text-brand-600"
+                >
                   info@claristudent.com
-                </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail className="h-4 w-4 flex-none text-brand-600" />
-                <a href="mailto:admin@claristudent.com" className="transition-colors hover:text-brand-600">
-                  admin@claristudent.com
-                </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail className="h-4 w-4 flex-none text-brand-600" />
-                <a href="mailto:support@claristudent.com" className="transition-colors hover:text-brand-600">
-                  support@claristudent.com
                 </a>
               </li>
               <li className="flex items-center gap-3 pt-1">
                 <Phone className="h-4 w-4 flex-none text-brand-600" />
                 <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-brand-600">
-                  +237 693 33 89 25
+                  +237 697 59 14 12
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 flex-none text-brand-600" />
-                <span>Yaoundé, Cameroun</span>
+                <span>{lang === 'fr' ? 'Yaoundé, Cameroun' : 'Yaounde, Cameroon'}</span>
               </li>
             </ul>
-            <a
-              href={APK_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary mt-6"
+            <button
+              onClick={handleAppDownload}
+              className="btn-primary mt-6 cursor-pointer"
             >
-              Télécharger l'application
-            </a>
+              {lang === 'fr' ? "Télécharger l'application" : 'Download application'}
+            </button>
           </div>
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-200 pt-8 sm:flex-row">
           <p className="text-sm text-slate-500">
-            &copy; {new Date().getFullYear()} Claristudent. Tous droits réservés.
+            &copy; {new Date().getFullYear()} Claristudent. {lang === 'fr' ? 'Tous droits réservés.' : 'All rights reserved.'}
           </p>
           <p className="text-sm text-slate-500">
-            Conçu avec soin pour les familles du monde entier.
+            {lang === 'fr' ? 'Conçu avec soin pour les familles du monde entier.' : 'Crafted with care for families worldwide.'}
           </p>
         </div>
       </div>
