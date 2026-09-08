@@ -8,7 +8,10 @@ export const handleAppDownload = async () => {
     try {
       await supabase
         .from('app_downloads')
-        .insert([{ device_info: navigator.userAgent }]);
+        .upsert(
+          [{ device_info: navigator.userAgent }],
+          { onConflict: 'device_info' }
+        );
       
       // On marque cet appareil comme "déjà comptabilisé"
       localStorage.setItem('clari_student_downloaded', 'true');
