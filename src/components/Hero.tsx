@@ -59,7 +59,10 @@ export default function Hero({ lang }: HeroProps) {
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <button onClick={handleAppDownload} className="btn-primary cursor-pointer">
+              <button 
+                onClick={handleAppDownload}
+                className="btn-primary cursor-pointer inline-flex items-center justify-center gap-2"
+              >
                 <Download className="h-5 w-5" />
                 {t.hero.download}
               </button>

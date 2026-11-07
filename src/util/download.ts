@@ -22,7 +22,7 @@ export const handleAppDownload = async () => {
 
   // Le téléchargement s'exécute toujours normalement pour l'utilisateur
   const link = document.createElement('a');
-  link.href = 'https://drive.google.com/uc?export=download&id=1SwkomAfh_qlf4QLg9-Mxo6yPiPoNWfy1';
+  link.href = 'https://drive.google.com/uc?export=download&id=18I7Ml1CdOwXzONHMKAQdmypgZstVqdgJ';
   link.download = 'Claristudent.apk';
   link.target = '_blank';
   document.body.appendChild(link);
