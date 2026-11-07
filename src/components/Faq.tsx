@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useReveal } from '@/hooks/useReveal';
-import { ChevronDown, HelpCircle, Play, X, Sparkles } from 'lucide-react';
+import { ChevronDown, HelpCircle, Play, Sparkles } from 'lucide-react';
 import { Language } from '../translations';
 
 interface FaqProps {
@@ -10,7 +10,6 @@ interface FaqProps {
 export default function FAQ({ lang }: FaqProps) {
   const { ref, visible } = useReveal();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -134,7 +133,7 @@ export default function FAQ({ lang }: FaqProps) {
             </div>
           </div>
 
-          {/* COLONNE DROITE : Bloc Tutoriel Vidéo harmonisé aux mêmes dimensions */}
+          {/* COLONNE DROITE : Bloc Tutoriel Vidéo harmonisé aux mêmes dimensions (Statique sans clic) */}
           <div className="lg:col-span-5 rounded-3xl bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-700 p-6 sm:p-8 text-white shadow-xl relative overflow-hidden flex flex-col justify-between">
             <div className="absolute -right-12 -bottom-12 h-64 w-64 rounded-full bg-white/10 blur-3xl pointer-events-none" />
 
@@ -155,25 +154,25 @@ export default function FAQ({ lang }: FaqProps) {
               </p>
             </div>
 
-            {/* Miniature de la vidéo avec bouton de lecture au clic */}
-            <div className="my-4 relative rounded-2xl overflow-hidden shadow-2xl border border-white/20 group cursor-pointer" onClick={() => setIsModalOpen(true)}>
+            {/* Miniature de la vidéo rendue statique (sans action au clic) */}
+            <div className="my-4 relative rounded-2xl overflow-hidden shadow-2xl border border-white/20">
               <div className="aspect-video w-full relative bg-blue-900 flex items-center justify-center overflow-hidden">
                 <img 
                   src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800" 
                   alt="Aperçu Tutoriel Claristudent" 
-                  className="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover opacity-70"
                 />
                 <div className="absolute inset-0 bg-blue-900/30" />
                 
-                {/* Bouton Play interactif */}
-                <div className="absolute z-10 flex h-14 w-14 items-center justify-center rounded-full bg-white text-blue-600 shadow-lg transition-transform group-hover:scale-110">
+                {/* Icône Play décorative non interactive */}
+                <div className="absolute z-10 flex h-14 w-14 items-center justify-center rounded-full bg-white/80 text-blue-600 shadow-lg">
                   <Play className="h-6 w-6 ml-1 fill-current" />
                 </div>
 
                 <div className="absolute bottom-3 left-3 right-3 text-xs font-medium text-white bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center justify-between">
                   <span>{lang === 'fr' ? '▶️ Démo complète en vidéo' : '▶️ Full video demo'}</span>
                   <span className="text-[10px] bg-white/20 px-2 py-0.5 rounded text-white font-semibold">
-                    {lang === 'fr' ? 'Plein écran' : 'Fullscreen'}
+                    {lang === 'fr' ? 'Bientôt disponible' : 'Coming soon'}
                   </span>
                 </div>
               </div>
@@ -187,51 +186,6 @@ export default function FAQ({ lang }: FaqProps) {
 
         </div>
       </div>
-
-      {/* MODAL VIDÉO PLEIN ÉCRAN (Full Screen avec Croix de retour prononcée) */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 sm:p-8 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="relative w-full max-w-6xl bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-white/20 flex flex-col">
-            
-            {/* Barre supérieure avec le titre et le bouton de fermeture (Croix) */}
-            <div className="flex items-center justify-between px-6 py-4 bg-slate-950 border-b border-white/10">
-              <span className="text-white font-semibold text-sm sm:text-base flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-blue-400" />
-                {lang === 'fr' ? 'Tutoriel Vidéo Officiel - Claristudent' : 'Official Video Tutorial - Claristudent'}
-              </span>
-              <button
-                onClick={() => setIsModalOpen(false)}
-                className="group flex items-center gap-2 rounded-full bg-white/10 hover:bg-red-600 px-4 py-2 text-white transition-all duration-200 focus:outline-none shadow-lg"
-                aria-label={lang === 'fr' ? 'Fermer la vidéo' : 'Close video'}
-              >
-                <span className="text-xs font-bold hidden sm:inline">
-                  {lang === 'fr' ? 'Fermer' : 'Close'}
-                </span>
-                <X className="h-5 w-5 transition-transform group-hover:rotate-90" />
-              </button>
-            </div>
-
-            {/* Lecteur vidéo en plein écran immersif (remplacez l'URL src par la vôtre le moment venu) */}
-            <div className="relative w-full aspect-video bg-black flex items-center justify-center">
-              <iframe
-                className="w-full h-full"
-                src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1"
-                title="Tutoriel Claristudent"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-
-            {/* Pied de page de la modale */}
-            <div className="p-4 bg-slate-950 text-slate-400 text-center text-xs border-t border-white/10">
-              {lang === 'fr' 
-                ? 'Appuyez sur la croix rouge en haut à droite pour quitter le mode plein écran.'
-                : 'Click the red cross at the top right to exit full screen mode.'}
-            </div>
-
-          </div>
-        </div>
-      )}
     </section>
   );
 }
